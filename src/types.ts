@@ -17,6 +17,8 @@ type PokemonDetailed = {
   sprites: { other: { dream_world: { front_default: string } } };
   stats: Array<Stat>;
   types: Array<PokemonType>;
+  location_area_encounters: string;
+  abilities: Array<Ability>;
 };
 
 type PokemonType = {
@@ -36,6 +38,21 @@ type Pagination = {
   currentPageUrl: string;
 };
 
+type Location = {
+  location_area: LocationArea;
+};
+
+type LocationArea = {
+  name: string;
+  url: string;
+};
+
+type Ability = {
+  ability: { name: string; url: string };
+  is_hidden: boolean;
+  slot: number;
+};
+
 export type {
   Pokemon,
   PokemonDetailed,
@@ -43,4 +60,6 @@ export type {
   Stat,
   PageData,
   Pagination,
+  Location,
+  Ability,
 };

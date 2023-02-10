@@ -1,5 +1,5 @@
 import { PokemonDetailed, Pagination, PageData } from "../types";
-import Card from "./Card";
+import Card from "./Pokemon/Card";
 import DirectionBtn from "./DirectionBtn";
 import PaginationProgress from "./PaginationProgress";
 

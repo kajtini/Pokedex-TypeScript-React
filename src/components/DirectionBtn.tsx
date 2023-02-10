@@ -11,7 +11,7 @@ function DirectionBtn({
 }: DirectionBtnProps) {
   return (
     <button
-      className="bg-white rounded-full py-3 bg-opacity-5"
+      className="bg-secondary rounded-full py-3 bg-opacity-5"
       onClick={direction === "previous" ? handlePreviousClick : handleNextClick}
     >
       {direction === "previous" ? "Previous" : "Next"}

@@ -21,7 +21,7 @@ function Search({
   }
 
   return (
-    <div className="flex items-center gap-3 mb-5">
+    <div className="flex items-center gap-3 mb-5 flex-wrap">
       <form
         className="flex gap-3 items-center"
         onSubmit={(e) => handleSearchSubmit(e)}
@@ -30,18 +30,20 @@ function Search({
           name="nameSearch"
           type="text"
           placeholder="Search By Name"
-          className="p-3 rounded-lg bg-white bg-opacity-5 focus:outline-none"
+          className="p-3 rounded-lg bg-secondary bg-opacity-5 focus:outline-none"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <button className="p-3 bg-white bg-opacity-5 rounded-lg">Search</button>
+        <button className="p-3 bg-secondary bg-opacity-5 rounded-lg">
+          Search
+        </button>
       </form>
       <button
-        className="p-3 bg-white bg-opacity-5 rounded-lg flex items-start gap-2"
+        className="p-3 bg-secondary bg-opacity-5 rounded-lg flex items-start gap-2"
         onClick={handleHomePage}
       >
         <AiFillHome size={20} />
-        Home Page
+        All Pokemon
       </button>
     </div>
   );

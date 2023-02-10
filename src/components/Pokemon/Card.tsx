@@ -1,12 +1,18 @@
-import { PokemonDetailed } from "../types";
+import { PokemonDetailed } from "../../types";
 import { FaWeightHanging } from "react-icons/fa";
 import { BsRulers } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
+import { PokemonType } from "../../types";
+import PokemonTypes from "./PokemonTypes";
+import Measurements from "./Measurements";
 
 type CardProps = {
   pokemon: PokemonDetailed | null;
 };
 
 function Card({ pokemon }: CardProps) {
+  const navigate = useNavigate();
+
   const upperCaseFirstLetter = (text: string) =>
     text.slice(0, 1).toUpperCase().concat(text.slice(1));
 
@@ -50,10 +56,22 @@ function Card({ pokemon }: CardProps) {
     }
   };
 
+  const handleLearnMore = () => {
+    if (pokemon) {
+      navigate(`/pokemon/${pokemon.name}`, {
+        state: {
+          name: pokemon.name.toLowerCase(),
+          nameVisible: upperCaseFirstLetter(pokemon.name),
+        },
+        replace: false,
+      });
+    }
+  };
+
   return (
     <>
       {pokemon && (
-        <div className="flex flex-col items-stretch bg-white bg-opacity-10 p-7 w-full max-w-sm rounded-lg gap-4 justify-self-center text-center">
+        <div className="flex flex-col items-stretch bg-secondary bg-opacity-10 p-7 w-full max-w-sm rounded-lg gap-4 justify-self-center text-center">
           <img
             src={pokemon.sprites.other.dream_world.front_default}
             alt="pokemon image"
@@ -62,36 +80,17 @@ function Card({ pokemon }: CardProps) {
           <p className="text-2xl">{formatPokemonId(pokemon.id)}</p>
           <p className="text-3xl">{upperCaseFirstLetter(pokemon.name)}</p>
 
-          <div className="flex items-center justify-center gap-4">
-            {pokemon.types.map((type) => (
-              <p
-                style={{ backgroundColor: `${getTypeColor(type.type.name)}` }}
-                key={type.slot}
-                className="rounded-lg px-4"
-              >
-                {upperCaseFirstLetter(type.type.name)}
-              </p>
-            ))}
-          </div>
+          <PokemonTypes
+            types={pokemon.types}
+            upperCaseFirstLetter={upperCaseFirstLetter}
+          />
 
-          <div className="text-center flex gap-8 mx-auto">
-            <div>
-              <div className="flex items-center gap-2">
-                <BsRulers size={12} />
-                <p className="text-lg">Height</p>
-              </div>
-              <p>{pokemon.height}</p>
-            </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <FaWeightHanging size={12} />
-                <p className="text-lg">Weight</p>
-              </div>
-              <p>{pokemon.weight}</p>
-            </div>
-          </div>
+          <Measurements height={pokemon.height} weight={pokemon.weight} />
 
-          <button className="bg-accent bg-opacity-30 w-full py-3 rounded-full">
+          <button
+            className="bg-accent bg-opacity-10 w-full py-3 rounded-full"
+            onClick={handleLearnMore}
+          >
             Learn More
           </button>
         </div>
