@@ -3,12 +3,13 @@ import { MdCatchingPokemon } from "react-icons/md";
 import { NavLink, Outlet } from "react-router-dom";
 
 function Navbar() {
-  const pages = [{ id: 1, name: "Pokedex", link: "/pokemon" }];
+  const pages = [
+    { id: 1, name: "Home", link: "/" },
+    { id: 2, name: "Pokedex", link: "/pokemon" },
+  ];
 
   return (
     <>
-      {/* Rendering with map and pages object, to account for future pages */}
-
       <div className="flex items-center justify-between w-full max-w-[1200px] py-8 px-8">
         <nav>
           <ul className="flex items-center gap-6">

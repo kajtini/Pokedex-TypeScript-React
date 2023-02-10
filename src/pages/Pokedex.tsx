@@ -86,7 +86,7 @@ function Pokedex() {
   }
 
   return (
-    <div className="self-stretch">
+    <div className="justify-self-stretch">
       <Search
         search={search}
         setSearch={setSearch}
