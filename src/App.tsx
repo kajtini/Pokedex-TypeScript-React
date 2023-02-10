@@ -11,6 +11,7 @@ function App() {
       <Layout>
         <Routes>
           <Route>
+            <Route path="/" element={<Pokedex />} />
             <Route path="/pokemon">
               <Route index element={<Pokedex />} />
               <Route path=":id" element={<Pokemon />} />
